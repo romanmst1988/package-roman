@@ -1,4 +1,7 @@
 def filter_by_state(list_inp: list[dict], state="EXECUTED") -> list[dict]:
+    """
+    Функция, которая фильтрует список словарей по значению ключа 'state'
+    """
     new_list = []
     for i in list_inp:
         if i["state"] == state:
@@ -19,6 +22,10 @@ print(
 
 
 def sort_by_date(base_idtime: list[dict], reverse=False) -> list[dict]:
+    """
+    Функция, которая принимает список словарей и
+    возвращает новый список, отсортированный по дате
+    """
     return sorted(base_idtime, key=lambda x: x["date"], reverse=reverse)
 
 
