@@ -33,11 +33,11 @@ pip install -r requirements.txt
 
 from src.masks import get_mask_account, get_mask_card_number
 
-# пример использования get_mask_account
+# Пример использования get_mask_account
 
 print(get_mask_card_number("1234567812345678"))
 
-# пример использования get_mask_account
+# Пример использования get_mask_account
 
 print(get_mask_account("123456"))
 
