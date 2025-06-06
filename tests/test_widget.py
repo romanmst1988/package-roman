@@ -1,5 +1,6 @@
 import pytest
-from src.widget import mask_account_card, get_date
+
+from src.widget import get_date, mask_account_card
 
 
 # 1. Тесты для проверки правильного распознавания типа и применения маскировки
@@ -12,7 +13,7 @@ from src.widget import mask_account_card, get_date
         ("Мой счет 09876543210987654321", "Счет **4321"),
     ],
 )
-def test_masking_correctness(input_str, expected_output):
+def test_masking_correctness(input_str: str, expected_output: str) -> None:
     result = mask_account_card(input_str)
     assert result == expected_output
 
@@ -25,7 +26,7 @@ def test_masking_correctness(input_str, expected_output):
         ("Счет 12345678901234567890", "счет"),
     ],
 )
-def test_type_recognition(input_str, expected_type):
+def test_type_recognition(input_str: str, expected_type: str) -> None:
     result = mask_account_card(input_str)
     if expected_type == "карта":
         # Проверяем наличие маскировки и названия карты
@@ -45,7 +46,7 @@ def test_type_recognition(input_str, expected_type):
         "Visa",  # без номера карты
     ],
 )
-def test_mask_account_card_invalid_inputs(bad_input):
+def test_mask_account_card_invalid_inputs(bad_input: str) -> None:
     # Ожидаем, что функция выбросит исключение или обработает ошибку
     with pytest.raises(ValueError):
         mask_account_card(bad_input)
@@ -60,7 +61,7 @@ def test_mask_account_card_invalid_inputs(bad_input):
         ("2020-01-01T00:00:00", "01.01.2020"),
     ],
 )
-def test_get_date_correctness(input_str, expected_output):
+def test_get_date_correctness_valid(input_str: str, expected_output: str) -> None:
     result = get_date(input_str)
     assert result == expected_output
 
@@ -74,7 +75,7 @@ def test_get_date_correctness(input_str, expected_output):
         #     2024-03-11T02:26:18.671407
     ],
 )
-def test_get_date_edge_cases(input_str, expected_output):
+def test_get_date_edge_cases(input_str: str, expected_output: str) -> None:
     result = get_date(input_str)
     assert result == expected_output
 
@@ -86,7 +87,7 @@ def test_get_date_edge_cases(input_str, expected_output):
         ("1999-12-31T23:59:59.999999", "31.12.1999"),
     ],
 )
-def test_get_date_correctness(input_str, expected_output):
+def test_get_date_correctness(input_str: str, expected_output: str) -> None:
     assert get_date(input_str) == expected_output
 
 
@@ -98,6 +99,6 @@ def test_get_date_correctness(input_str, expected_output):
         "20240311T02:26:18",  # без дефисов
     ],
 )
-def test_get_date_invalid_inputs(bad_input):
+def test_get_date_invalid_inputs(bad_input: str) -> None:
     with pytest.raises(ValueError):
         get_date(bad_input)

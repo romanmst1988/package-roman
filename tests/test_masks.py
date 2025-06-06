@@ -1,5 +1,6 @@
 import pytest
-from src.masks import get_mask_card_number, get_mask_account
+
+from src.masks import get_mask_card_number
 
 
 @pytest.mark.parametrize(
@@ -13,7 +14,7 @@ from src.masks import get_mask_card_number, get_mask_account
         ("12345678", "1234 56**"),
     ],
 )
-def test_get_mask_card_number(input_card, expected):
+def test_get_mask_card_number(input_card: str, expected: str) -> None:
     assert get_mask_card_number(input_card) == expected
 
 
@@ -28,7 +29,7 @@ def test_get_mask_card_number(input_card, expected):
         "xxxxxxxxxxxxxxxx",
     ],
 )
-def test_incorrect_input(input_card):
+def test_incorrect_input(input_card: str) -> None:
     cleaned_input = input_card.strip()
     result = get_mask_card_number(cleaned_input)
     cleaned_input_no_spaces = cleaned_input.replace(" ", "")
@@ -47,18 +48,18 @@ def test_incorrect_input(input_card):
     assert result == expected_masked
 
 
-def test_empty_string():
+def test_empty_string() -> None:
     assert get_mask_card_number("") == ""
     assert get_mask_card_number("####") == "####"
     assert get_mask_card_number("test") == "test"
     assert get_mask_card_number("test") == "test"
 
 
-def test_get_mask_card_number_len():
+def test_get_mask_card_number_len() -> None:
     assert get_mask_card_number("1234567812345678") == "1234 56** **** 5678"
 
 
-def get_mask_account(account_number: str) -> str:
+def get_mask_account_valid(account_number: str) -> str:
     """Функция принимает на вход номер счета и возвращает его маску."""
     cleaned_number = account_number.replace("A-", "").replace("-B", "")
     account_mask = "**" + cleaned_number[-4:]
@@ -68,7 +69,7 @@ def get_mask_account(account_number: str) -> str:
 
 
 @pytest.fixture
-def account_numbers():
+def account_numbers() -> list:
     return [
         "73654108430135874305",
         "7365 4108 4301 3587 4366",
@@ -82,7 +83,7 @@ def account_numbers():
     ]
 
 
-# Тестирование функции get_mask_account
+# Тестирование функции
 @pytest.mark.parametrize(
     "index,mask",
     [
@@ -97,6 +98,6 @@ def account_numbers():
         (6, "Некорректный ввод"),
     ],
 )
-def test_get_mask_account(account_numbers, index, mask):
+def test_get_mask_account(account_numbers: str, index: int, mask: str) -> None:
     account = account_numbers[index]
-    assert get_mask_account(account) == mask
+    assert get_mask_account_valid(account) == mask
