@@ -1,6 +1,7 @@
 import pytest
 from src.processing import filter_by_state, sort_by_date
 
+
 # Фикстура с исходным списком данных
 @pytest.fixture
 def sample_data():
@@ -12,12 +13,16 @@ def sample_data():
         {"id": 5, "amount": 500, "state": "PENDING"},
     ]
 
+
 # Параметризация для различных статусов
-@pytest.mark.parametrize("status, expected_ids", [
-    ("EXECUTED", [1, 4]),
-    ("PENDING", [2, 5]),
-    ("CANCELLED", [3]),
-])
+@pytest.mark.parametrize(
+    "status, expected_ids",
+    [
+        ("EXECUTED", [1, 4]),
+        ("PENDING", [2, 5]),
+        ("CANCELLED", [3]),
+    ],
+)
 def test_filter_by_state_correctness(sample_data, status, expected_ids):
     result = filter_by_state(sample_data, status)
     result_ids = [item["id"] for item in result]
@@ -71,10 +76,14 @@ def sample_data_1():
         {"id": 5, "date": "2022-12-31T23:59:59"},
     ]
 
-@pytest.mark.parametrize("reverse_flag, expected_order_ids", [
-    (False, [5, 2, 4, 1, 3]),
-    (True, [3, 1, 2, 4, 5]),
-])
+
+@pytest.mark.parametrize(
+    "reverse_flag, expected_order_ids",
+    [
+        (False, [5, 2, 4, 1, 3]),
+        (True, [3, 1, 2, 4, 5]),
+    ],
+)
 def test_sort_by_date_order(sample_data_1, reverse_flag, expected_order_ids):
     sorted_list = sort_by_date(sample_data_1, reverse=reverse_flag)
     result_ids = [item["id"] for item in sorted_list]
@@ -92,6 +101,7 @@ def test_sort_with_equal_dates():
     sorted_data = sort_by_date(data)
     sorted_ids = [item["id"] for item in sorted_data]
     assert sorted_ids == [3, 1, 2, 4]
+
 
 # Тест с некорректными датами
 def test_sort_with_incorrect_dates():

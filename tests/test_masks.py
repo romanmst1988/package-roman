@@ -1,21 +1,33 @@
 import pytest
 from src.masks import get_mask_card_number, get_mask_account
 
-@pytest.mark.parametrize('input_card, expected', [
-    ("", ""),
-    ("1", "1"),
-    ("1234", "1234"),
-    ("123456", "1234 56"),
-    ("1234567", "1234 56*"),
-    ("12345678", "1234 56**"),
-])
+
+@pytest.mark.parametrize(
+    "input_card, expected",
+    [
+        ("", ""),
+        ("1", "1"),
+        ("1234", "1234"),
+        ("123456", "1234 56"),
+        ("1234567", "1234 56*"),
+        ("12345678", "1234 56**"),
+    ],
+)
 def test_get_mask_card_number(input_card, expected):
     assert get_mask_card_number(input_card) == expected
 
 
-@pytest.mark.parametrize("input_card", [
-    "   ", "--", "test", "####", '\t\n', "xxxxxxxxxxxxxxxx",
-])
+@pytest.mark.parametrize(
+    "input_card",
+    [
+        "   ",
+        "--",
+        "test",
+        "####",
+        "\t\n",
+        "xxxxxxxxxxxxxxxx",
+    ],
+)
 def test_incorrect_input(input_card):
     cleaned_input = input_card.strip()
     result = get_mask_card_number(cleaned_input)
@@ -31,17 +43,20 @@ def test_incorrect_input(input_card):
                 card_list[i] = "*"
         masked_str = "".join(card_list)
         # Форматируем по группам по 4
-        expected_masked = " ".join(masked_str[i:i + 4] for i in range(0, len(masked_str), 4))
+        expected_masked = " ".join(masked_str[i : i + 4] for i in range(0, len(masked_str), 4))
     assert result == expected_masked
 
+
 def test_empty_string():
-    assert get_mask_card_number('') == ''
+    assert get_mask_card_number("") == ""
     assert get_mask_card_number("####") == "####"
     assert get_mask_card_number("test") == "test"
     assert get_mask_card_number("test") == "test"
 
+
 def test_get_mask_card_number_len():
-    assert get_mask_card_number('1234567812345678') == '1234 56** **** 5678'
+    assert get_mask_card_number("1234567812345678") == "1234 56** **** 5678"
+
 
 def get_mask_account(account_number: str) -> str:
     """Функция принимает на вход номер счета и возвращает его маску."""
@@ -63,8 +78,9 @@ def account_numbers():
         "",
         "ABC",
         "QWERTY",
-        "+/-/*"
+        "+/-/*",
     ]
+
 
 # Тестирование функции get_mask_account
 @pytest.mark.parametrize(
@@ -78,7 +94,7 @@ def account_numbers():
         (5, "Некорректный ввод"),
         (6, "Некорректный ввод"),
         (7, "Некорректный ввод"),
-        (6, "Некорректный ввод")
+        (6, "Некорректный ввод"),
     ],
 )
 def test_get_mask_account(account_numbers, index, mask):
