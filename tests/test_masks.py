@@ -3,6 +3,59 @@ import pytest
 from src.masks import get_mask_card_number
 
 
+# Фикстура с тестовыми случаями для get_mask_card_number
+@pytest.fixture
+def mask_card_number_cases() -> list:
+    return [
+        ("", ""),
+        ("1", "1"),
+        ("1234", "1234"),
+        ("123456", "1234 56"),
+        ("1234567", "1234 56*"),
+        ("12345678", "1234 56**"),
+    ]
+
+
+# Фикстура с некорректными входными данными
+@pytest.fixture
+def incorrect_input_cases() -> list:
+    return [
+        "   ",
+        "--",
+        "test",
+        "####",
+        "\t\n",
+        "xxxxxxxxxxxxxxxx",
+    ]
+
+
+# Фикстура с различными тестовыми строками для проверки маскировки
+@pytest.fixture
+def diverse_inputs() -> list:
+    return [
+        "",
+        "####",
+        "test",
+        "1234567812345678",
+    ]
+
+
+# Фикстура с номерами счетов для функции get_mask_account_valid
+@pytest.fixture
+def account_numbers() -> list:
+    return [
+        "73654108430135874305",
+        "7365 4108 4301 3587 4366",
+        "7365-4108-4301-3587-4377",
+        "A-73654108430135874305-B",
+        "736541084374305",
+        "",
+        "ABC",
+        "QWERTY",
+        "+/-/*",
+    ]
+
+
 @pytest.mark.parametrize(
     "input_card, expected",
     [
@@ -66,21 +119,6 @@ def get_mask_account_valid(account_number: str) -> str:
     if account_number == "" or len(cleaned_number) < 16:
         return "Некорректный ввод"
     return account_mask
-
-
-@pytest.fixture
-def account_numbers() -> list:
-    return [
-        "73654108430135874305",
-        "7365 4108 4301 3587 4366",
-        "7365-4108-4301-3587-4377",
-        "A-73654108430135874305-B",
-        "736541084374305",
-        "",
-        "ABC",
-        "QWERTY",
-        "+/-/*",
-    ]
 
 
 # Тестирование функции

@@ -3,6 +3,54 @@ import pytest
 from src.widget import get_date, mask_account_card
 
 
+# Фикстура для корректных строк с картами и счетами
+@pytest.fixture
+def valid_card_and_account() -> list:
+    return [
+        ("Visa Platinum 7000792289606361", "Visa Platinum  7000 79** **** 6361"),
+        ("MasterCard Gold 1234567890123456", "MasterCard Gold  1234 56** **** 3456"),
+        ("Счет 73654108430135874305", "Счет **4305"),
+        ("Мой счет 09876543210987654321", "Счет **4321"),
+    ]
+
+
+# Фикстура для типов (карта или счет)
+@pytest.fixture
+def type_samples() -> list:
+    return [
+        ("Visa 1234567890123456", "карта"),
+        ("Счет 12345678901234567890", "счет"),
+    ]
+
+
+# Фикстура для некорректных входных данных для mask_account_card
+@pytest.fixture
+def invalid_mask_inputs() -> list:
+    return [
+        "",
+        "Visa",
+    ]
+
+
+# Фикстура для правильных дат
+@pytest.fixture
+def valid_dates() -> list:
+    return [
+        ("2024-03-11T02:26:18.671407", "11.03.2024"),
+        ("1999-12-31T23:59:59.999999", "31.12.1999"),
+        ("2020-01-01T00:00:00", "01.01.2020"),
+    ]
+
+
+# Фикстура для граничных и необычных дат
+@pytest.fixture
+def edge_case_dates() -> list:
+    return [
+        ("0000-00-00T00:00:00", "00.00.0000"),
+        ("9999-12-31T23:59:59", "31.12.9999"),
+    ]
+
+
 # 1. Тесты для проверки правильного распознавания типа и применения маскировки
 @pytest.mark.parametrize(
     "input_str, expected_output",
