@@ -1,5 +1,5 @@
 def filter_by_currency(transactions: list, currency: str):
-    """ генерируем транзакции из кортежа транзакций фильтруя по валюте """
+    """ Функция, которая генерирует транзакции из кортежа транзакций фильтруя по валюте """
 
     filtered_transactions = (x for x in transactions if x["operationAmount"]["currency"]["code"] == currency)
     yield from filtered_transactions
@@ -82,3 +82,18 @@ result = filter_by_currency([
         }
     ], currency="USD")
 print(next(result))
+
+
+
+
+def card_number_generator(a: int, b: int):
+    """Генерирует номера карт в заданном диапазоне"""
+    str_number = "0000000000000000"
+    len_ = len(str(a))
+    for number in range(b):
+        substring = str_number[:-len_]
+        result_1 = substring + str(a)
+        result_2 = result_1[0:4] + " " + result_1[4:8] + " " + result_1[8:12] + " " + result_1[12:]
+        yield result_2
+        a += 1
+print(next(card_number_generator(100, 300)))
