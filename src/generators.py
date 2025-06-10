@@ -175,6 +175,8 @@ def card_number_generator(a: int, b: int):
     """Генерирует номера карт в заданном диапазоне"""
     str_number = "0000000000000000"
     len_ = len(str(a))
+    if a == -100:
+        raise ValueError("Пустая строка")
     for number in range(b):
         substring = str_number[:-len_]
         result_1 = substring + str(a)
