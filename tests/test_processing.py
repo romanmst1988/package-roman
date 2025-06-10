@@ -3,18 +3,6 @@ import pytest
 from src.processing import filter_by_state, sort_by_date
 
 
-# Фикстура с исходным списком данных
-@pytest.fixture
-def sample_data() -> list:
-    return [
-        {"id": 1, "amount": 100, "state": "EXECUTED"},
-        {"id": 2, "amount": 200, "state": "PENDING"},
-        {"id": 3, "amount": 300, "state": "CANCELLED"},
-        {"id": 4, "amount": 400, "state": "EXECUTED"},
-        {"id": 5, "amount": 500, "state": "PENDING"},
-    ]
-
-
 # Параметризация для различных статусов
 @pytest.mark.parametrize(
     "status, expected_ids",
@@ -64,19 +52,6 @@ def test_filter_by_state_single_element() -> None:
     # Проверка с несовпадающим статусом
     result2 = filter_by_state(data, "EXECUTED")
     assert result2 == []
-
-
-# Фикстура с исходными данными
-@pytest.fixture
-def sample_data_1() -> list:
-    return [
-        {"id": 1, "date": "2023-10-01T12:00:00"},
-        {"id": 2, "date": "2023-09-15T09:30:00"},
-        {"id": 3, "date": "2023-10-05T18:45:00"},
-        {"id": 4, "date": "2023-09-15T09:30:00"},
-        {"id": 5, "date": "2022-12-31T23:59:59"},
-    ]
-
 
 @pytest.mark.parametrize(
     "reverse_flag, expected_order_ids",
