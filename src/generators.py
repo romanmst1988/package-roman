@@ -182,3 +182,4 @@ def card_number_generator(a: int, b: int):
         yield result_2
         a += 1
 print(next(card_number_generator(100, 300)))
+
