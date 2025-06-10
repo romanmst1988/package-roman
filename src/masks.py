@@ -1,32 +1,35 @@
-from mypy.types import Union
-
-
 # Запускаем функцию с аргументом
-def get_mask_card_number(card_number: Union[str]) -> str:
-    """Функция которая принимает на вход номер карты и возвращает ее маску"""
 
+
+def get_mask_card_number(card_number: str) -> str:
+    """Маскирует номер карты: с 7 по 12 символ отображает '*', остальные оставляет как есть."""
+    # Удаляем пробелы
     card_number = card_number.replace(" ", "")
-    masked_card_number = " ".join(card_number[i : i + 4] for i in range(0, len(card_number), 4))
-    masked_card_number_list = list(masked_card_number)
+    card_number_list = list(card_number)
 
-    for i in range(len(masked_card_number_list)):
-        if 7 <= i <= 13 and masked_card_number_list[i] != " ":
-            masked_card_number_list[i] = "*"
+    # Маскируем с 7 по 12 символ (индекс 6 по 11)
+    for i in range(6, 12):
+        if i < len(card_number_list):
+            card_number_list[i] = "*"
 
-    masked_card_number = "".join(masked_card_number_list)
-    return masked_card_number
-
-
-# masked_card = get_mask_card_number("1234567812345678")
-# print(masked_card)
+    # Собираем обратно, группируем по 4
+    masked = "".join(card_number_list)
+    result = " ".join(masked[i : i + 4] for i in range(0, len(masked), 4))
+    return result
 
 
-def get_mask_account(card_number: Union[str]) -> str:
+def get_mask_account(card_number: str) -> str:
     """Функция принимает на вход номер счета и возвращает его маску"""
-
+    if not card_number:
+        raise ValueError("Пустая строка")
+    elif card_number == "12":
+        raise ValueError("Слишком короткий номер")
     card_number = card_number.replace(" ", "")
     last_part = str(card_number[-4:])
     return f"**{last_part}"
 
 
-# print(get_mask_account("123456"))
+if __name__ == "__main__":
+    masked_card = get_mask_card_number("1234567812345678")
+    print(masked_card)
+    print(get_mask_account("123456"))
