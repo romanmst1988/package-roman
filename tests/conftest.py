@@ -12,7 +12,6 @@ def mask_card_number_cases() -> list:
         ("12345678", "1234 56**"),
     ]
 
-
 # Фикстура с некорректными входными данными для test_masks
 @pytest.fixture
 def incorrect_input_cases() -> list:
@@ -25,7 +24,6 @@ def incorrect_input_cases() -> list:
         "xxxxxxxxxxxxxxxx",
     ]
 
-
 # Фикстура с различными тестовыми строками для проверки маскировки для test_masks
 @pytest.fixture
 def diverse_inputs() -> list:
@@ -35,7 +33,6 @@ def diverse_inputs() -> list:
         "test",
         "1234567812345678",
     ]
-
 
 # Фикстура с номерами счетов для функции get_mask_account_valid для test_masks
 @pytest.fixture
@@ -51,6 +48,11 @@ def account_numbers() -> list:
         "QWERTY",
         "+/-/*",
     ]
+
+# Фикстура, предоставляющая невалидные входные данные для get_mask_account для test_masks
+@pytest.fixture(params=["", "12"])
+def invalid_account_input(request) -> str:
+    return request.param
 
 # Фикстура с исходным списком данных для test_processing
 @pytest.fixture
@@ -74,9 +76,6 @@ def sample_data_1() -> list:
         {"id": 5, "date": "2022-12-31T23:59:59"},
     ]
 
-
-
-
 # Фикстура для корректных строк с картами и счетами для test_widget
 @pytest.fixture
 def valid_card_and_account() -> list:
@@ -87,7 +86,6 @@ def valid_card_and_account() -> list:
         ("Мой счет 09876543210987654321", "Счет **4321"),
     ]
 
-
 # Фикстура для типов (карта или счет) для test_widget
 @pytest.fixture
 def type_samples() -> list:
@@ -95,7 +93,6 @@ def type_samples() -> list:
         ("Visa 1234567890123456", "карта"),
         ("Счет 12345678901234567890", "счет"),
     ]
-
 
 # Фикстура для некорректных входных данных для mask_account_card для test_widget
 @pytest.fixture
@@ -105,7 +102,6 @@ def invalid_mask_inputs() -> list:
         "Visa",
     ]
 
-
 # Фикстура для правильных дат для test_widget
 @pytest.fixture
 def valid_dates() -> list:
@@ -114,7 +110,6 @@ def valid_dates() -> list:
         ("1999-12-31T23:59:59.999999", "31.12.1999"),
         ("2020-01-01T00:00:00", "01.01.2020"),
     ]
-
 
 # Фикстура для граничных и необычных дат для test_widget
 @pytest.fixture

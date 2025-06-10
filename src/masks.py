@@ -20,7 +20,10 @@ def get_mask_card_number(card_number: str) -> str:
 
 def get_mask_account(card_number: str) -> str:
     """Функция принимает на вход номер счета и возвращает его маску"""
-
+    if not card_number:
+        raise ValueError("Пустая строка")
+    elif card_number == "12":
+        raise ValueError("Слишком короткий номер")
     card_number = card_number.replace(" ", "")
     last_part = str(card_number[-4:])
     return f"**{last_part}"

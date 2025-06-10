@@ -1,6 +1,7 @@
 import pytest
 
-from src.masks import get_mask_card_number
+from src.masks import get_mask_card_number, get_mask_account
+
 
 @pytest.mark.parametrize(
     "input_card, expected",
@@ -51,7 +52,6 @@ def test_empty_string() -> None:
     assert get_mask_card_number("") == ""
     assert get_mask_card_number("####") == "####"
     assert get_mask_card_number("test") == "test"
-    assert get_mask_card_number("test") == "test"
 
 
 def test_get_mask_card_number_len() -> None:
@@ -85,3 +85,14 @@ def get_mask_account_valid(account_number: str) -> str:
 def test_get_mask_account(account_numbers: str, index: int, mask: str) -> None:
     account = account_numbers[index]
     assert get_mask_account_valid(account) == mask
+
+@pytest.mark.parametrize(
+    "bad_input",
+    [
+        "",  # пустая строка
+        "12",  # Слишком короткий номер
+    ],
+)
+def test_get_mask_account_invalid_inputs(bad_input: str) -> None:
+    with pytest.raises(ValueError):
+        get_mask_account(bad_input)
