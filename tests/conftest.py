@@ -1,5 +1,6 @@
 import pytest
 
+
 # Фикстура с тестовыми случаями для get_mask_card_number для test_masks
 @pytest.fixture
 def mask_card_number_cases() -> list:

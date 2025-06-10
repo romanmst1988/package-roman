@@ -2,6 +2,7 @@ import pytest
 
 from src.widget import get_date, mask_account_card
 
+
 # 1. Тесты для проверки правильного распознавания типа и применения маскировки
 @pytest.mark.parametrize(
     "input_str, expected_output",

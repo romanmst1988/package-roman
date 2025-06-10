@@ -30,7 +30,9 @@ C:\Users\Admin\PycharmProjects\package-roman
 
 pip install -r requirements.txt
 
+#Ссылка на отчет покрытия тестами:
 
+C:\Users\Admin\PycharmProjects\package-roman\htmlcov\index.html
 
 Использование
 

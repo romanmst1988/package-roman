@@ -2,6 +2,7 @@ import pytest
 
 from src.processing import filter_by_state, sort_by_date
 
+
 # Параметризация для различных статусов
 @pytest.mark.parametrize(
     "status, expected_ids",
