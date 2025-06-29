@@ -14,8 +14,6 @@ def open_json(path: str) -> list:
         return []
 
 
-
-
 def convertor_to_rubles(operation: dict) -> float:
     """Функция, которая конвертирует валюту в рубли"""
     try:
@@ -29,16 +27,15 @@ def convertor_to_rubles(operation: dict) -> float:
         return 0.0
 
 
-
 if __name__ == "__main__":
     print(open_json("../data/operations.json"))
-    print(convertor_to_rubles({
-        "id": 41428829,
-        "state": "EXECUTED",
-        "date": "2019-07-03T18:35:29.512364",
-        "operationAmount": {
-            "amount": "8221.37",
-            "currency": {
-                "name": "USD",
-                "code": "USD"
-            }}}))
+    print(
+        convertor_to_rubles(
+            {
+                "id": 41428829,
+                "state": "EXECUTED",
+                "date": "2019-07-03T18:35:29.512364",
+                "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+            }
+        )
+    )
