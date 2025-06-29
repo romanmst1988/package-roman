@@ -101,6 +101,28 @@ print(next(result_descriptions))
 
 print(next(card_number_generator(100, 300)))
 
+# Пример использования open_json
+
+print(open_json("../data/operations.json"))
+
+# Пример использования convertor_to_rubles
+
+print(
+        convertor_to_rubles(
+            {
+                "id": 41428829,
+                "state": "EXECUTED",
+                "date": "2019-07-03T18:35:29.512364",
+                "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+            }
+        )
+    )
+
+# Пример использования currency_convertor
+
+print(currency_convertor("USD", 100))
+print(type(currency_convertor("USD", 100)))
+
 # Список тест-кейсов для существующего функционала находящихся в директории tests:
 
 ## Модуль test_masks
