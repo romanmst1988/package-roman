@@ -285,6 +285,18 @@ pycodestyle = ">=2.14.0,<2.15.0"
 pyflakes = ">=3.4.0,<3.5.0"
 
 [[package]]
+name = "icd10-cm"
+version = "0.0.5"
+description = "ICD-10 codes for diseases, signs and symptoms, abnormal findings, complaints, social circumstances, and external causes of injury or disease"
+optional = false
+python-versions = ">=3.6.0"
+groups = ["main"]
+files = [
+    {file = "icd10-cm-0.0.5.tar.gz", hash = "sha256:08e13a0b263b10be1d67023bdc8fb38bff6152676159ef123350f6d5f45209bd"},
+    {file = "icd10_cm-0.0.5-py2.py3-none-any.whl", hash = "sha256:95ef09aef64b68222eb1a562285c95095644af3fafd55fd0c29b577e661e5805"},
+]
+
+[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -613,4 +625,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "6a0c377917dc0d73b0ffe5ee2f7fedf0705c9c815d7e1bd7735d2518092f612c"
+content-hash = "ecddd52404fe4ab38ca50fe596b2b6e39be3834261445bc26cb6dc4e0794634d"
