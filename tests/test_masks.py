@@ -86,6 +86,7 @@ def test_get_mask_account(account_numbers: str, index: int, mask: str) -> None:
     account = account_numbers[index]
     assert get_mask_account_valid(account) == mask
 
+
 @pytest.mark.parametrize(
     "bad_input",
     [

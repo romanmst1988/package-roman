@@ -53,6 +53,7 @@ def test_filter_by_state_single_element() -> None:
     result2 = filter_by_state(data, "EXECUTED")
     assert result2 == []
 
+
 @pytest.mark.parametrize(
     "reverse_flag, expected_order_ids",
     [
