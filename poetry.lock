@@ -475,6 +475,18 @@ dev = ["pre-commit", "tox"]
 testing = ["coverage", "pytest", "pytest-benchmark"]
 
 [[package]]
+name = "private-package"
+version = "1.1.1"
+description = "Install python package from private github repository"
+optional = false
+python-versions = ">=3.6"
+groups = ["main"]
+files = [
+    {file = "private_package-1.1.1-py3-none-any.whl", hash = "sha256:fb4c6b0aab159d6272437edf467da61bc5c2f8e6b7b37c9a7fc5d0e3523e348e"},
+    {file = "private_package-1.1.1.tar.gz", hash = "sha256:003ac2dab96bf3990809b2f936f0f90da48dceecda81bc00efa96c747fad5274"},
+]
+
+[[package]]
 name = "pycodestyle"
 version = "2.14.0"
 description = "Python style guide checker"
@@ -625,4 +637,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "ecddd52404fe4ab38ca50fe596b2b6e39be3834261445bc26cb6dc4e0794634d"
+content-hash = "fa6f4918cc31ae1dc7f2f04293c4671c76e4e7d165f6e6d0aa2c91a0a1197cb8"
