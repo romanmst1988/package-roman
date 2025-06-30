@@ -26,13 +26,14 @@ def get_date(data_card_number: [str]) -> str:
     и возвращает строку с датой в формате "ДД.ММ.ГГГГ"'''
     if not data_card_number:
         raise ValueError("Пустая строка")
-    elif data_card_number == '2024/03/11T02:26:18':
+    elif data_card_number == "2024/03/11T02:26:18":
         raise ValueError("неправильный формат разделителя")
     elif data_card_number == "20240311T02:26:18":
         raise ValueError("без дефисов")
 
     data_correct = data_card_number[8:10] + "." + data_card_number[5:7] + "." + data_card_number[:4]
     return data_correct
+
 
 if __name__ == "__main__":
     print(get_date("2024-03-11T02:26:18.671407"))
