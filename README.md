@@ -123,6 +123,18 @@ print(
 print(currency_convertor("USD", 100))
 print(type(currency_convertor("USD", 100)))
 
+# Пример использования reading_file_csv
+
+home_dir = Path.cwd()
+result_read_csv = reading_file_csv(home_dir)
+print(result_read_csv)
+
+# пример использования reading_file_xlsx
+
+home_dir_xlsx = Path.cwd()
+result_read_xlsx = reading_file_xlsx(home_dir_xlsx)
+print(result_read_xlsx)
+
 # Список тест-кейсов для существующего функционала находящихся в директории tests:
 
 ## Модуль test_masks
