@@ -5,6 +5,8 @@ import pandas as pd
 
 
 def reading_file_csv(path_csv):
+    """Функция, которая считывает финансовые операции из файла csv
+    и выдает список словарей с транзакциями за тем возвращает их в виде json"""
     file_path = path_csv / "../transactions.csv"
     absolute_path = file_path.resolve()
     try:
@@ -18,6 +20,8 @@ def reading_file_csv(path_csv):
 
 
 def reading_file_xlsx(path_xlsx):
+    """Функция, которая считывает финансовые операции из файла xlsx
+    и выдает список словарей с транзакциями за тем возвращает их в виде json"""
     file_path = path_xlsx / "../transactions_excel.xlsx"
     absolute_path = file_path.resolve()
     try:
