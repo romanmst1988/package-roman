@@ -83,7 +83,7 @@ def main():
     print(f"Всего банковских операций в выборке: {len(filtered_by_state_list)}\n")
 
     for i in filtered_by_state_list:
-        from_ = mask_account_card(i.get("from")) + " -> " if i.get("from") else ""
+        from_ = mask_account_card(str(i.get("from", ""))) + " -> " if i.get("from") else ""
         date_ = i.get("date") or "По умолчанию"
         description_ = i.get("description") or "По умолчанию"
         amount_ = i.get("operationAmount", {}).get("amount") or i.get("amount")
@@ -92,7 +92,7 @@ def main():
 
         print(
             f"{get_date(date_)} {description_}\n"
-            f"{from_}{mask_account_card(to_)}\n"
+            f"{from_}{mask_account_card(str(to_))}\n"
             f"Сумма: {amount_} {currency_code_}\n"
         )
 

@@ -1,19 +1,20 @@
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(name_card: [str]) -> [str]:
+def mask_account_card(name_card: str) -> str:
     """Функция, которая принимает один аргумент — строку, содержащую тип и номер карты или счета,
     возвращать строку с замаскированным номером."""
+    if not name_card:
+        return ""
+
+    name_card = str(name_card)  # На случай, если передали не строку
+
     if "счет" in name_card.lower():
-
         number_card = name_card[-20:]
-
         masked_card = get_mask_account(number_card)
         return f"Счет {masked_card}"
-    elif not name_card:
-        raise ValueError("Пустая строка в качестве входных данных")
     elif len(name_card) < 16:
-        raise ValueError(f"Номер карты слишком короткий: {len(name_card)} цифр (ожидается 16)")
+        return name_card  # или raise ValueError, если хотите строгую проверку
     else:
         name_card_bank = name_card[-16:]
         masked_visa = get_mask_card_number(name_card_bank)
