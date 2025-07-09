@@ -4,10 +4,10 @@ from pathlib import Path
 import pandas as pd
 
 
-def reading_file_csv(path_csv):
+def reading_file_csv(path_csv: str) -> list[dict]:
     """Функция, которая считывает финансовые операции из файла csv
     и выдает список словарей с транзакциями за тем возвращает их в виде json"""
-    file_path = path_csv / "../transactions.csv"
+    file_path = path_csv / "C:/Users/Admin/PycharmProjects/package-roman/transactions.csv"
     absolute_path = file_path.resolve()
     try:
         df = pd.read_csv(absolute_path, sep=";")
@@ -19,10 +19,10 @@ def reading_file_csv(path_csv):
     return None
 
 
-def reading_file_xlsx(path_xlsx):
+def reading_file_xlsx(path_xlsx: str) -> list[dict]:
     """Функция, которая считывает финансовые операции из файла xlsx
     и выдает список словарей с транзакциями за тем возвращает их в виде json"""
-    file_path = path_xlsx / "../transactions_excel.xlsx"
+    file_path = path_xlsx / "C:/Users/Admin/PycharmProjects/package-roman/transactions_excel.xlsx"
     absolute_path = file_path.resolve()
     try:
         df = pd.read_excel(absolute_path)

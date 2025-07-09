@@ -1,8 +1,14 @@
-def filter_by_currency(transactions: list, currency: str):
-    """Функция, которая генерирует транзакции из кортежа транзакций фильтруя по валюте"""
+from typing import Generator, Iterator
 
-    filtered_transactions = (x for x in transactions if x["operationAmount"]["currency"]["code"] == currency)
-    yield from filtered_transactions
+
+def filter_by_currency(transaction_list: list, currency: str) -> Iterator:
+    """Функция, фильтрующая транзакции по заданной валюте и возвращающая итератор"""
+    for transaction in transaction_list:
+        if (
+            transaction.get("operationAmount", {}).get("currency", {}).get("code", {}) == currency
+            or transaction.get("currency_code", {}) == currency
+        ):
+            yield transaction
 
 
 result = filter_by_currency(
