@@ -5,9 +5,9 @@ def filter_by_state(list_inp: list, state: str = "EXECUTED") -> list[dict]:
     содержащий только те словари, у которых ключ 'state' соответствует указанному значению.
     """
     new_list = []
-    for i in list_inp:
-        if i["state"] == state:
-            new_list.append(i)
+    for item in list_inp:
+        if str(item.get("state", "")).lower() == state.lower():
+            new_list.append(item)
     return new_list
 
 
