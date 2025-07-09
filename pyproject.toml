@@ -8,7 +8,17 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "flake8 (>=7.2.0,<8.0.0)"
+    "flake8 (>=7.2.0,<8.0.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "mypy (>=1.16.1,<2.0.0)",
+    "black (>=25.1.0,<26.0.0)",
+    "isort (>=6.0.1,<7.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "icd10-cm (>=0.0.5,<0.0.6)",
+    "private-package (>=1.1.1,<2.0.0)",
+    "logging (>=0.4.9.6,<0.5.0.0)",
+    "pandas (>=2.3.0,<3.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)"
 ]
 
 [tool.poetry]
@@ -24,6 +34,8 @@ isort = "^6.0.1"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.32.3"
+pytest-cov = "^6.1.1"
+pytest = "^8.3.5"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
