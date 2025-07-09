@@ -1,7 +1,8 @@
-import logging
+
+# import logging
 
 # logger = logging.getLogger("masks")
-# file_handler = logging.FileHandler("../logs/masks.log", encoding="utf-8")
+# file_handler = logging.FileHandler("C:/Users/Admin/PycharmProjects/package-roman/logs/masks.log", encoding="utf-8")
 # file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 # file_handler.setFormatter(file_formatter)
 # logger.addHandler(file_handler)
@@ -21,7 +22,7 @@ def get_mask_card_number(card_number: str) -> str:
 
     # Собираем обратно, группируем по 4
     masked = "".join(card_number_list)
-    result = " ".join(masked[i : i + 4] for i in range(0, len(masked), 4))
+    result = " ".join(masked[i: i + 4] for i in range(0, len(masked), 4))
     # logger.debug("Ваш номер карты замаскирован в целях безопасности")
     return result
 
