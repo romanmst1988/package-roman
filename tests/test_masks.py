@@ -44,7 +44,7 @@ def test_incorrect_input(input_card: str) -> None:
                 card_list[i] = "*"
         masked_str = "".join(card_list)
         # Форматируем по группам по 4
-        expected_masked = " ".join(masked_str[i : i + 4] for i in range(0, len(masked_str), 4))
+        expected_masked = " ".join(masked_str[i:i + 4] for i in range(0, len(masked_str), 4))
     assert result == expected_masked
 
 

@@ -1,7 +1,9 @@
 import json
-import logging
 
 from external_api import currency_convertor
+
+# import logging
+
 
 # logger = logging.getLogger("utils")
 # file_handler = logging.FileHandler("../logs/utils.log", encoding="utf-8")

@@ -190,6 +190,7 @@ def transactions_data():
 def empty_transactions_data():
     return []
 
+
 @pytest.fixture
 def fixtest_search_transaction():
     return [

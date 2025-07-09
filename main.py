@@ -1,11 +1,10 @@
+from bank_read_file import search_transaction
 from generators import filter_by_currency
 from processing import filter_by_state, sort_by_date
-from bank_read_file import search_transaction
-from fin_operations import reading_file_csv, reading_file_xlsx
 from transactions_csv_read import reading_csv
 from transactions_xlsx_read import reading_xlsx
 from utils import open_json
-from widget import mask_account_card, get_date
+from widget import get_date, mask_account_card
 
 
 def main():
@@ -95,6 +94,7 @@ def main():
             f"{from_}{mask_account_card(str(to_))}\n"
             f"Сумма: {amount_} {currency_code_}\n"
         )
+
 
 if __name__ == "__main__":
     print(main())
