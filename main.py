@@ -2,7 +2,7 @@ from generators import filter_by_currency
 from processing import filter_by_state, sort_by_date
 from bank_read_file import search_transaction
 from fin_operations import reading_file_csv, reading_file_xlsx
-from ransactions_csv_read import reading_csv
+from transactions_csv_read import reading_csv
 from transactions_xlsx_read import reading_xlsx
 from utils import open_json
 from widget import mask_account_card, get_date
